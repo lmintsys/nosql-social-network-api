@@ -1,9 +1,8 @@
 {
-  "name": "25-Ins_Mongoose-CRUD",
-  "version": "1.0.1",
-  "description": "Instructor demo for CRUD operations in Mongoose on subdocuments",
-  "main": "index.js",
-  "license": "MIT",
+  "name": "nosql-social-network-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
     "start": "node server",
     "dev": "nodemon index"
