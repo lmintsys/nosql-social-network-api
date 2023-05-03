@@ -13,9 +13,9 @@ To create this app, Mongoose and Express.js packages were installed.
 ## Usage
 
 This app may be used to create and retrieve information from the database, such as information on all users, their thoughts, reactions and friend list. In addition, users and thoughts can be updated and all entries can be removed.  
-![get](assets/get.png)  
-![post](assets/post.png)  
-[Walkthrough video](https://watch.screencastify.com/v/1fBuiSDCmkuxh4gSAjMu)
+![users](assets/users.png)  
+![thoughts](assets/thoughts.png)  
+[Walkthrough video](https://watch.screencastify.com/v/bQeCAV4LqqFaxTyjQkjB)
 
 ## Credits
 
