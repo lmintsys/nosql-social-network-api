@@ -1,7 +1,7 @@
 const User = require("../models/User");
 
 module.exports = {
-  // view all users
+  // View all users
   async getUsers(req, res) {
     try {
       const users = await User.find();
@@ -10,7 +10,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // view one user by id
+  // View one user by id
   async getSingleUser(req, res) {
     try {
       const user = await User.findOne({ _id: req.params.userId })
@@ -28,7 +28,7 @@ module.exports = {
     }
   },
 
-  // create a new user
+  // Create a new user
   async createUser(req, res) {
     try {
       const dbUserData = await User.create(req.body);
@@ -38,8 +38,8 @@ module.exports = {
     }
   },
 
-  // update user by id
-  async updateUserById(req, res) {
+  // Update user by id
+  async updateUser(req, res) {
     try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: req.params.userId },
@@ -56,8 +56,8 @@ module.exports = {
     }
   },
 
-  // delete user by id
-  async removeUserById(req, res) {
+  // Delete user by id
+  async deleteUser(req, res) {
     try {
       const removedUser = await User.findOneAndRemove({
         _id: req.params.userId,
@@ -74,7 +74,7 @@ module.exports = {
     }
   },
 
-  // add friend to a user
+  // Add friend to a user
   async addFriend(req, res) {
     try {
       const userId = req.params.userId;
@@ -105,7 +105,8 @@ module.exports = {
     }
   },
 
-  async removeFriend(req, res) {
+  // Delete a friend
+  async deleteFriend(req, res) {
     try {
       const userId = req.params.userId;
       const friendId = req.params.friendId;
@@ -128,7 +129,7 @@ module.exports = {
 
       await user.save();
 
-      res.status(200).json({ message: "Friend removed successfully", user });
+      res.status(200).json({ message: "Friend successfully deleted!", user });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Server Error" });
