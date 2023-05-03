@@ -1,30 +1,37 @@
 const { Schema, Types, model } = require("mongoose");
+const formatDate = require("../utils/formatDate");
 
 // Schema to create reactions to thoughts
-const reactionSchema = new Schema({
-  reactionId: {
-    type: Schema.Types.ObjectId,
-    default: () => new Types.ObjectId(),
-  },
-  reactionBody: {
-    type: String,
-    required: true,
-    minlength: 1,
-    maxlength: 280,
-  },
-  username: {
-    type: String,
-    ref: "User",
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    get: function (timestamp) {
-      return new Date(timestamp).toLocaleString();
+const reactionSchema = new Schema(
+  {
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
+    reactionBody: {
+      type: String,
+      required: true,
+      minlength: 1,
+      maxlength: 280,
+    },
+    username: {
+      type: String,
+      ref: "User",
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      // Format the timestamp
+      get: (timestamp) => formatDate(timestamp),
     },
   },
-});
+  {
+    toJSON: {
+      getters: true,
+    },
+  }
+);
 
 // Schema to create Thought model
 const thoughtSchema = new Schema(
@@ -38,9 +45,8 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: function (timestamp) {
-        return new Date(timestamp).toLocaleString();
-      },
+      // Format the timestamp
+      get: (timestamp) => formatDate(timestamp),
     },
     username: {
       type: String,
@@ -52,6 +58,7 @@ const thoughtSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
+      getters: true,
     },
     id: false,
   }
